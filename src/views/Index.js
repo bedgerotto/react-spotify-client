@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <div>
       <h1>Index</h1>
-      <p>{cookies.get('auth_token')}</p>
+      <p>{cookies.get('access_token')}</p>
     </div>
   )
 }

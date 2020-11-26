@@ -8,4 +8,12 @@ function generateRandomString(length) {
   return text;
 };
 
-export { generateRandomString };
+function urlHashToObject(hash) {
+  return hash.substr(1).split('&').reduce(function (res, item) {
+    var parts = item.split('=');
+    res[parts[0]] = parts[1];
+    return res;
+  }, {});
+}
+
+export { generateRandomString, urlHashToObject };
