@@ -59,11 +59,10 @@ function App() {
     <AuthContext.Provider value={isAuthenticated}>
       <Router>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="/">Spotify Client</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/">Index</Nav.Link>
               { isAuthenticated ? <Nav.Link as={Link} to="/home">Home</Nav.Link> : null }
               { isAuthenticated ? <Nav.Link as={Link} to="/search">Search</Nav.Link> : null }
             </Nav>
