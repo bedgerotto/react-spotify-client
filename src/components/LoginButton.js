@@ -1,8 +1,9 @@
 import React from 'react';
+import { Button } from "react-bootstrap";
 
 const LoginButton = (props) => {
   return (
-    <button onClick={props.handleLoginButton}>Login</button>
+    <Button onClick={props.handleLoginButton}>Login</Button>
   );
 };
 

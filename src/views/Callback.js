@@ -11,7 +11,7 @@ const Callback = () => {
 
   let expires = new Date();
   let cookieExpiration = new Date(expires.setSeconds(expires.getSeconds() + params.expires_in));
-  cookies.set('access_token', params.access_token, {expires: cookieExpiration});
+  cookies.set('access_token', params.access_token, { expires: cookieExpiration });
 
   return (
     !!cookies.get('access_token') ? <Redirect to="/home" /> : <Redirect to="/login" />

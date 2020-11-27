@@ -1,13 +1,14 @@
 import React from 'react';
-import Cookies from 'universal-cookie'
+import { Jumbotron } from 'react-bootstrap';
 
 const Index = () => {
-  const cookies = new Cookies();
-
   return (
-    <div>
-      <h1>Index</h1>
-      <p>{cookies.get('access_token')}</p>
+    <div className="container">
+      <Jumbotron className="index-panel">
+        <h1>Simple Spotify client</h1>
+        <br />
+        <p>Click on login to use</p>
+      </Jumbotron>
     </div>
   )
 }
