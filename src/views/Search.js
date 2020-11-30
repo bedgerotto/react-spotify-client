@@ -13,15 +13,22 @@ const Search = () => {
   const [searchParams, setSearchParams] = useState({ q: '', offset: 0, limit: 10 });
   const [rows, setRows] = useState([]);
 
-  const handleSearch = () => {
+  const handleSearch = (params) => {
     setLoading(true);
+    const currentOffset = params.offset < 0 ? 0 : params.offset
     getSearch(searchParams).then((data) => {
-      setSearchParams({
-        ...searchParams,
-        ...{ offset: (searchParams.offset + searchParams.limit) }
-      });
-      setRows(rows.concat(data.artists.items, data.tracks.items));
-      setLoading(false);
+      if (!data.error) {
+        setSearchParams({
+          ...searchParams,
+          ...{ offset: currentOffset }
+        });
+  
+        const items = [].concat((data.artists.items || []), (data.tracks.items || []), (data.albums.items || []))
+        setRows(items);
+        setLoading(false);
+      }
+    }).catch((error) => {
+      console.log(error)
     });
   }
 
@@ -29,7 +36,7 @@ const Search = () => {
     setSearch(event.target.value);
     setSearchParams({
       ...searchParams,
-      ...{q: event.target.value}
+      ...{q: event.target.value, offset: 0}
     })
   }
   return (
@@ -39,7 +46,7 @@ const Search = () => {
         <div className="input-group mb-3">
           <input type="text" name="search" placeholder="Search" className="form-control" onChange={handleSeachValue} value={search} />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="button" onClick={handleSearch}>
+            <button className="btn btn-outline-secondary" type="button" onClick={() => { handleSearch({ offset: searchParams.offset }) }}>
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
@@ -50,32 +57,36 @@ const Search = () => {
         ?
           <Loading />
         :
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              rows.map((row) => {
-                return (
-                  <tr key={row.id}>
-                    <td>{row.name}</td>
-                    <td>{row.type}</td>
-                    <td>
-                      <Link to={`/${row.type}/${row.id}`}>
-                        <FontAwesomeIcon icon={faShare} />
-                      </Link>
-                    </td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
+          <div>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  rows.map((row) => {
+                    return (
+                      <tr key={row.id}>
+                        <td>{row.name}</td>
+                        <td>{row.type}</td>
+                        <td>
+                          <Link to={`/${row.type}/${row.id}`}>
+                            <FontAwesomeIcon icon={faShare} />
+                          </Link>
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+            <button className="btn btn-secondary mr-1" onClick={() => handleSearch({ offset: searchParams.offset - searchParams.limit })}>Previous</button>
+            <button className="btn btn-secondary" onClick={() => handleSearch({ offset: searchParams.offset + searchParams.limit })}>Next</button>
+          </div>
       }
     </div>
   )

@@ -16,4 +16,17 @@ function urlHashToObject(hash) {
   }, {});
 }
 
-export { generateRandomString, urlHashToObject };
+function truncateString(str, num) {
+  if (str.length <= num) {
+    return str
+  }
+
+  return (
+    <span title={str}>
+      {str.slice(0, num) + '...'}
+    </span>
+  )
+}
+
+
+export { generateRandomString, urlHashToObject, truncateString };

@@ -26,6 +26,7 @@ import Callback from './views/Callback';
 import Search from './views/Search';
 import Artist from './views/Artist';
 import Track from './views/Track';
+import Album from './views/Album';
 
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
@@ -75,6 +76,7 @@ function App() {
           <ProtectedRoute path="/search" component={Search} />
           <ProtectedRoute path="/artist/:artistId" component={Artist} />
           <ProtectedRoute path="/track/:trackId" component={Track} />
+          <ProtectedRoute path="/album/:albumId" component={Album} />
           <Route path="/callback" component={Callback} />
           <Route path="/" component={Index} />
         </Switch>

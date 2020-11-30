@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { getTrack } from '../api_resources/request';
-import { Image, Row, Col, Badge } from 'react-bootstrap';
+import { Row, Col, Badge } from 'react-bootstrap';
 
 import Loading from '../components/Loading';
+import PreviewTrack from '../components/PreviewTrack';
+import Thumbnail from '../components/Thumbnail';
 
 const Track = () => {
   const { trackId } = useParams();
@@ -24,19 +26,31 @@ const Track = () => {
         <div>
           <div className="header">
           <h1>{ track.name }</h1>
-          <h6>{ !track.explicity ? <Badge variant="secondary">EXPLICITY</Badge> : '' }</h6>
+          <h6>{ track.explicity ? <Badge variant="secondary">EXPLICITY</Badge> : '' }</h6>
           </div>
           <hr />
           <div className="content">
             <Row>
               <Col>
-                <h6>Artist details</h6>
+                <h6>Track details</h6>
                 <Row>
                   <Col>
                     <span>Popularity</span>
                   </Col>
                   <Col>
                     <span>{track.popularity}</span>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <span>Album</span>
+                  </Col>
+                  <Col>
+                    <span>
+                      <Link to={`/album/${track.album.id}`}>
+                        {track.album.name}
+                      </Link>
+                    </span>
                   </Col>
                 </Row>
                 <Row>
@@ -61,11 +75,14 @@ const Track = () => {
                 </Row>
                 <br />
                 <Row>
-                  <div>
-                    <audio controls>
-                      <source src={track.preview_url} type="audio/mpeg" />
-                    </audio>
-                  </div>
+                  <PreviewTrack previewUrl={track.preview_url} />
+                </Row>
+              </Col>
+              <Col>
+                <Row>
+                  <Col className="col-sm-12">
+                    <Thumbnail imageSrc={track.album.images} />
+                  </Col>
                 </Row>
                 <br />
                 <Row>
@@ -80,11 +97,6 @@ const Track = () => {
                     </a>
                   </Col>
                 </Row>
-              </Col>
-              <Col>
-                <div className="header-image">
-                  <Image src={track.album.images[0].url} rounded />
-                </div>
               </Col>
             </Row>
           </div>
