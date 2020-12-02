@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShare } from '@fortawesome/free-solid-svg-icons'
 
-import { getSearch } from '../api_resources/request';
+import { getSearch } from '../../api_resources/request';
 import { Link } from 'react-router-dom';
-import Loading from '../components/Loading';
+import Loading from '../../components/Loading';
 
 const Search = () => {
   const [search, setSearch] = useState('');
@@ -40,7 +40,7 @@ const Search = () => {
     })
   }
   return (
-    <div className="container">
+    <>
       <h1>Search</h1>
       <div className="col-sm-6">
         <div className="input-group mb-3">
@@ -88,7 +88,7 @@ const Search = () => {
             <button className="btn btn-secondary" onClick={() => handleSearch({ offset: searchParams.offset + searchParams.limit })}>Next</button>
           </div>
       }
-    </div>
+    </>
   )
 };
 

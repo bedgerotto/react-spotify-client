@@ -15,7 +15,9 @@ import {
 } from 'react-router-dom';
 
 import {
-  Navbar, Nav
+  Navbar,
+  Nav,
+  Container
 } from "react-bootstrap";
 
 import Cookies from 'universal-cookie';
@@ -39,7 +41,6 @@ import AuthContext from './contexts/AuthContext';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
 
   const handleLoginButton = () => loginApi();
 
@@ -48,6 +49,7 @@ function App() {
     cookies.remove('access_token');
 
     setIsAuthenticated(false)
+    window.location = '/'
   }
 
   useEffect(() => {
@@ -59,7 +61,7 @@ function App() {
   return (
     <AuthContext.Provider value={isAuthenticated}>
       <Router>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg">
           <Navbar.Brand href="/">Spotify Client</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -71,15 +73,17 @@ function App() {
           </Navbar.Collapse>
         </Navbar>
 
-        <Switch>
-          <ProtectedRoute path="/home" component={Home} />
-          <ProtectedRoute path="/search" component={Search} />
-          <ProtectedRoute path="/artist/:artistId" component={Artist} />
-          <ProtectedRoute path="/track/:trackId" component={Track} />
-          <ProtectedRoute path="/album/:albumId" component={Album} />
-          <Route path="/callback" component={Callback} />
-          <Route path="/" component={Index} />
-        </Switch>
+        <Container className="mt-5" fluid="sm">
+          <Switch>
+            <ProtectedRoute path="/home" component={Home} />
+            <ProtectedRoute path="/search" component={Search} />
+            <ProtectedRoute path="/artist/:artistId" component={Artist} />
+            <ProtectedRoute path="/track/:trackId" component={Track} />
+            <ProtectedRoute path="/album/:albumId" component={Album} />
+            <Route path="/callback" component={Callback} />
+            <Route path="/" component={Index} />
+          </Switch>
+        </Container>
 
       </Router>
     </AuthContext.Provider>

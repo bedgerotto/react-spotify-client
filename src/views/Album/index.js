@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { getAlbum } from '../api_resources/request';
+import { getAlbum } from '../../api_resources/request';
 import { Row, Col } from 'react-bootstrap';
-import Loading from '../components/Loading';
-import Thumbnail from '../components/Thumbnail';
-import TracksList from '../components/TracksList';
+import Loading from '../../components/Loading';
+import Thumbnail from '../../components/Thumbnail';
+import TracksList from '../../components/TracksList';
 
 const Album = () => {
   const { albumId } = useParams();
@@ -20,7 +20,7 @@ const Album = () => {
     });
   }, [albumId])
   return (
-    <div className="container">
+    <>
       {
         isLoading
         ?
@@ -100,7 +100,7 @@ const Album = () => {
           </div>
         </div>
       }
-    </div>
+    </>
   )
 };
 

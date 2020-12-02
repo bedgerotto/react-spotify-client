@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { getUserFollowArtists, putUserFollowArtists, deleteUserFollowArtists } from '../api_resources/request';
-import Loading from './Loading';
-import FollowButton from './FollowButton';
-import UnfollowButton from './UnfollowButton'
+import { getUserFollowArtists, putUserFollowArtists, deleteUserFollowArtists } from '../../api_resources/request';
+import Loading from '../Loading';
+import FollowButton from '../FollowButton';
+import UnfollowButton from '../UnfollowButton'
 
 const TrackArtist = (props) => {
   const [following, setFollowing] = useState(false);

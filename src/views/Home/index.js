@@ -4,14 +4,14 @@ import React,
     useState
   } from 'react';
 
-import { Jumbotron } from 'react-bootstrap'
+import { Jumbotron, Row, Col } from 'react-bootstrap'
 
 
-import { getUserData, getUserTopListening } from '../api_resources/request';
+import { getUserData, getUserTopListening } from '../../api_resources/request';
 
-import TopArtists from '../components/TopArtists';
-import TopTracks from '../components/TopTracks';
-import Error from '../components/Error';
+import TopArtists from '../../components/TopArtists';
+import TopTracks from '../../components/TopTracks';
+import Error from '../../components/Error';
 
 const Home = () => {
   const [userData, setUserData] = useState({topArtists: [], topTracks: []});
@@ -33,24 +33,26 @@ const Home = () => {
   }, []);
   
   return (
-    <div>
+    <>
       {
         userData.id ?
-        <div>
+        <>
           <Jumbotron>
             <h1>Hello, {userData.display_name}!</h1>
           </Jumbotron>
-          <div className='container'>
-            <TopArtists isLoading={topArtistsLoading} topArtists={userData.topArtists} />
+          <Row>
+            <Col>
+              <TopArtists isLoading={topArtistsLoading} topArtists={userData.topArtists} />
               <hr />
-            <TopTracks isLoading={topTracksLoading} topTracks={userData.topTracks} />
-          </div>
-        </div>
+              <TopTracks isLoading={topTracksLoading} topTracks={userData.topTracks} />
+            </Col>
+          </Row>
+        </>
         :
         <Error />
       }
       
-    </div>
+    </>
   )
 }
 

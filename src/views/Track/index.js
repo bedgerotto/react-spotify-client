@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
-import { getTrack } from '../api_resources/request';
+import { getTrack } from '../../api_resources/request';
 import { Row, Col, Badge } from 'react-bootstrap';
 
-import Loading from '../components/Loading';
-import PreviewTrack from '../components/PreviewTrack';
-import Thumbnail from '../components/Thumbnail';
-import LikeHandler from '../components/LikeHandler';
+import Loading from '../../components/Loading';
+import PreviewTrack from '../../components/PreviewTrack';
+import Thumbnail from '../../components/Thumbnail';
+import LikeHandler from '../../components/LikeHandler';
 
 const Track = () => {
   const { trackId } = useParams();
@@ -20,7 +20,7 @@ const Track = () => {
     });
   }, [trackId])
   return (
-    <div className="container">
+    <>
       {
         !!track.id
         ?
@@ -106,7 +106,7 @@ const Track = () => {
         :
         <Loading />
       }
-    </div>
+    </>
   )
 };
 

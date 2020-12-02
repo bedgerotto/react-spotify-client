@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShare } from '@fortawesome/free-solid-svg-icons'
 
-import Loading from './Loading';
+import Loading from '../Loading';
 
 const TopTracks = (props) => {
   return (

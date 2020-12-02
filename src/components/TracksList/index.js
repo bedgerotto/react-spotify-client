@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import PreviewTrack from './PreviewTrack';
-import { truncateString } from '../api_resources/utils'
+import PreviewTrack from '../PreviewTrack';
+import { truncateString } from '../../api_resources/utils'
 
 const TracksList = (props) => {
   return (

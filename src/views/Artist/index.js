@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { getArtist, getArtistTopTracks, getArtistAlbums } from '../api_resources/request';
+import { getArtist, getArtistTopTracks, getArtistAlbums } from '../../api_resources/request';
 import { Row, Col, Tabs, Tab } from 'react-bootstrap';
-import Loading from '../components/Loading';
-import Thumbnail from '../components/Thumbnail';
-import TracksList from '../components/TracksList';
-import AlbumsList from '../components/AlbumsList';
-import TrackArtist from '../components/TrackArtist';
+import Loading from '../../components/Loading';
+import Thumbnail from '../../components/Thumbnail';
+import TracksList from '../../components/TracksList';
+import AlbumsList from '../../components/AlbumsList';
+import TrackArtist from '../../components/TrackArtist';
 
 const Artist = () => {
   const { artistId } = useParams();
@@ -47,7 +47,7 @@ const Artist = () => {
     });;
   }, [artistId])
   return (
-    <div className="container">
+    <>
       {
         isLoading
         ?
@@ -120,7 +120,7 @@ const Artist = () => {
           </div>
         </div>
       }
-    </div>
+    </>
   )
 };
 

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { getUserLikesTrack, putUserLikesTrack, deleteUserLikesTrack } from '../api_resources/request'
+import { getUserLikesTrack, putUserLikesTrack, deleteUserLikesTrack } from '../../api_resources/request'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
-import LikeButton from "./LikeButton";
-import UnlikeButton from "./UnlikeButton";
-import Loading from "./Loading";
+import LikeButton from "../LikeButton";
+import UnlikeButton from "../UnlikeButton";
 
 const LikeHandler = (props) => {
   const [isLoading, setIsLoading] = useState(true);
