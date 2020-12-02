@@ -7,6 +7,7 @@ import { Row, Col, Badge } from 'react-bootstrap';
 import Loading from '../components/Loading';
 import PreviewTrack from '../components/PreviewTrack';
 import Thumbnail from '../components/Thumbnail';
+import LikeHandler from '../components/LikeHandler';
 
 const Track = () => {
   const { trackId } = useParams();
@@ -25,8 +26,9 @@ const Track = () => {
         ?
         <div>
           <div className="header">
-          <h1>{ track.name }</h1>
-          <h6>{ track.explicity ? <Badge variant="secondary">EXPLICITY</Badge> : '' }</h6>
+          <h1 className="d-inline">{ track.name }</h1>
+          <h6 className="d-inline">{ track.explicity ? <Badge variant="secondary">EXPLICITY</Badge> : '' }</h6>
+          <LikeHandler className="mt-1 float-right" trackId={track.id} />
           </div>
           <hr />
           <div className="content">

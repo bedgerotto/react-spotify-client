@@ -12,7 +12,7 @@ const baseRequestParams = () => {
 }
 
 const loginApi = () => {
-  var scope = 'user-top-read user-read-private user-read-email user-follow-modify user-follow-read';
+  var scope = 'user-top-read user-read-private user-read-email user-follow-modify user-follow-read user-library-read user-library-modify';
   var url = 'https://accounts.spotify.com/authorize';
   url += '?response_type=token';
   url += '&client_id=' + process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -98,6 +98,34 @@ const handleUserFollowArtists = async (method, artistIds = []) => {
   return body;
 }
 
+const getUserLikesTrack = (trackId) => {
+  return handleUserLikesTrack('GET', trackId);
+}
+
+const putUserLikesTrack = (trackId) => {
+  return handleUserLikesTrack('PUT', trackId);
+}
+
+const deleteUserLikesTrack = (trackId) => {
+  return handleUserLikesTrack('DELETE', trackId);
+}
+
+const handleUserLikesTrack = async (method, trackId) => {
+  const params = baseRequestParams();
+  let ids, contains;
+  if (Array.isArray(trackId)) {
+    ids = trackId.join();
+  } else {
+    contains = method === 'GET' ? '/contains' : '';
+    ids = trackId
+  }
+
+  const response = await fetch(`${baseUri}/me/tracks${contains}?ids=${ids}`, { ...params, ...{ method }});
+  const body = await response.json();
+
+  return body;
+}
+
 const getSearch = async (searchFilters) => {
   const searchParams = new URLSearchParams({q: searchFilters.q, limit: '10', offset: searchFilters.offset, type: ['artist', 'album', 'track'].join()})
   const response = await fetch(`${baseUri}/search?${searchParams}`, baseRequestParams())
@@ -106,4 +134,20 @@ const getSearch = async (searchFilters) => {
   return body;
 }
 
-export { loginApi, getUserData, getUserTopListening, getArtist, getTrack, getSearch, getAlbum, getArtistTopTracks, getArtistAlbums, getUserFollowArtists, putUserFollowArtists, deleteUserFollowArtists };
+export {
+  loginApi,
+  getUserData,
+  getUserTopListening,
+  getArtist,
+  getTrack,
+  getSearch,
+  getAlbum,
+  getArtistTopTracks,
+  getArtistAlbums,
+  getUserFollowArtists,
+  putUserFollowArtists,
+  deleteUserFollowArtists,
+  getUserLikesTrack,
+  putUserLikesTrack,
+  deleteUserLikesTrack
+};
