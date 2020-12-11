@@ -6,9 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
 import LikeButton from "../LikeButton";
-import UnlikeButton from "../UnlikeButton";
 
-import './style.css'
+import style from './index.module.scss'
 
 const LikeHandler = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -69,7 +68,7 @@ const LikeHandler = (props) => {
   }
 
   return (
-    <div className="like-handler">
+    <div className={style.likeHandler}>
       {
         isLoading ?
         <FontAwesomeIcon color="gray" icon={faCircleNotch} spin />
