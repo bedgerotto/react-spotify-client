@@ -13,6 +13,7 @@ import DetailHeader from '../../components/DetailHeader';
 import cx from 'classnames';
 import globalStyles from '../../bootstrap.module.scss';
 import style from './index.module.scss'
+import Hr from '../../components/structure/hr';
 
 const Track = () => {
   const { trackId } = useParams();
@@ -24,7 +25,7 @@ const Track = () => {
       setTrack((a) => ({...a, ...data}))
     });
   }, [trackId])
-  console.log(globalStyles);
+
   return (
     <>
       {
@@ -38,7 +39,7 @@ const Track = () => {
             <LikeHandler trackId={track.id} />
           </div>
           </div>
-          <hr />
+          <Hr />
           <div className="content">
             <Row>
               <Col>

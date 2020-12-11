@@ -11,6 +11,7 @@ import { getUserData, getUserTopListening } from '../../api_resources/request';
 import TopArtists from '../../components/TopArtists';
 import TopTracks from '../../components/TopTracks';
 import Error from '../../components/Error';
+import Hr from '../../components/structure/hr';
 
 const Home = () => {
   const [userData, setUserData] = useState({topArtists: [], topTracks: []});
@@ -42,7 +43,7 @@ const Home = () => {
           <Row>
             <Col>
               <TopArtists isLoading={topArtistsLoading} topArtists={userData.topArtists} />
-              <hr />
+              <Hr />
               <TopTracks isLoading={topTracksLoading} topTracks={userData.topTracks} />
             </Col>
           </Row>

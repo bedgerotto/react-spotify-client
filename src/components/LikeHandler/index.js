@@ -62,7 +62,6 @@ const LikeHandler = (props) => {
         setIsLoading(false);
       }
     }).catch((error) => {
-      console.log(error);
       fetchFollowingStatus();
     });;
   }

@@ -15,6 +15,7 @@ import DetailHeader from '../../components/DetailHeader';
 
 import AppStyle from '../../app.module.scss'
 import style from './index.module.scss'
+import Hr from '../../components/structure/hr';
 
 
 const Artist = () => {
@@ -70,7 +71,7 @@ const Artist = () => {
           </Row>
           <Row>
             <Col className={style.divider}>
-              <hr className={AppStyle.hrDark} />
+              <Hr />
             </Col>
           </Row>
           <Row>

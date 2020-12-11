@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Lottie from 'react-lottie-segments';
 
 import animationData from './animation.json';
 import style from './button.module.scss'
 
 const LikeButton = (props) => {
-  console.log(props.liked);
   const [isLiked, setLikeState] = useState(props.liked);
   const [animationState, setAnimationState] = useState({
     isStopped: false, isPaused: false,
@@ -56,7 +55,6 @@ const LikeButton = (props) => {
             isPaused={animationState.isPaused}
             goToAndStop={animationState.goToAndStop}/>
         </div>
-      {/* <FontAwesomeIcon color="gray" icon={faHeart} /> */}
     </div>
   )
 };

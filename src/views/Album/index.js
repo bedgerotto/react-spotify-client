@@ -7,6 +7,7 @@ import Loading from '../../components/Loading';
 import Thumbnail from '../../components/Thumbnail';
 import TracksList from '../../components/TracksList';
 import DetailHeader from '../../components/DetailHeader';
+import Hr from '../../components/structure/hr';
 
 const Album = () => {
   const { albumId } = useParams();
@@ -31,7 +32,7 @@ const Album = () => {
           <div className="header">
             <h1>{ album.name }</h1>
           </div>
-          <hr />
+          <Hr />
           <div className="content">
             <Row>
               <Col>
