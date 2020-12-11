@@ -6,7 +6,6 @@ import React,
 
 import { Jumbotron, Row, Col } from 'react-bootstrap'
 
-
 import { getUserData, getUserTopListening } from '../../api_resources/request';
 
 import TopArtists from '../../components/TopArtists';

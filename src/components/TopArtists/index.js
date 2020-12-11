@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShare } from '@fortawesome/free-solid-svg-icons'
 
+import { Table } from 'react-bootstrap'
+
 import Loading from '../Loading';
+
 
 const TopArtists = (props) => {
   return (
@@ -15,7 +18,7 @@ const TopArtists = (props) => {
             <div>
               <h4>TOP 5 Artists</h4>
             </div>
-            <table className="table table-bordered scroll">
+            <Table variant="dark" striped>
               <thead>
                 <tr>
                   <th>Name</th>
@@ -38,7 +41,7 @@ const TopArtists = (props) => {
                   )
                 })}
               </tbody>
-            </table>
+            </Table>
           </div>
         }
     </div>

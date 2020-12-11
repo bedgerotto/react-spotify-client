@@ -1,12 +1,13 @@
 import React from 'react';
+import './style.css'
 
 const PreviewTrack = (props) => {
   return (
-    <div style={{width: props.size}}>
-      <audio style={{width: props.size}} controls>
+    <>
+      <audio controls>
         <source src={props.previewUrl} type="audio/mpeg" />
       </audio>
-    </div>
+    </>
   )
 };
 

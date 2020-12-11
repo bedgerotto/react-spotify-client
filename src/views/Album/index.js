@@ -6,6 +6,7 @@ import { Row, Col } from 'react-bootstrap';
 import Loading from '../../components/Loading';
 import Thumbnail from '../../components/Thumbnail';
 import TracksList from '../../components/TracksList';
+import DetailHeader from '../../components/DetailHeader';
 
 const Album = () => {
   const { albumId } = useParams();
@@ -35,43 +36,44 @@ const Album = () => {
             <Row>
               <Col>
                 <h6>Album details</h6>
-                <Row>
-                  <Col>
-                    <span>Popularity</span>
-                  </Col>
-                  <Col>
-                    <span>{album.popularity}</span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <span>Genres</span>
-                  </Col>
-                  <Col>
-                    <span>{album.genres.join(', ')}</span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <span>Artists</span>
-                  </Col>
-                  <Col>
-                    {
-                      album.artists.map((artist) => {
-                        return (
-                          <Row key={artist.id}>
-                            <Col>
-                              <Link to={`/artist/${artist.id}`}>
-                                {artist.name}
-                              </Link>
-                            </Col>
-                          </Row>
-                        )
-                      })
-                    }
-                  </Col>
-                </Row>
-                <br />
+                <DetailHeader>
+                  <Row>
+                    <Col>
+                      <span>Popularity</span>
+                    </Col>
+                    <Col>
+                      <span>{album.popularity}</span>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <span>Genres</span>
+                    </Col>
+                    <Col>
+                      <span>{album.genres.join(', ')}</span>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <span>Artists</span>
+                    </Col>
+                    <Col>
+                      {
+                        album.artists.map((artist) => {
+                          return (
+                            <Row key={artist.id}>
+                              <Col>
+                                <Link to={`/artist/${artist.id}`}>
+                                  {artist.name}
+                                </Link>
+                              </Col>
+                            </Row>
+                          )
+                        })
+                      }
+                    </Col>
+                  </Row>
+                </DetailHeader>
                 <Row>
                   <TracksList title="Album tracks" tracks={album.tracks.items || [] } />
                 </Row>

@@ -8,6 +8,11 @@ import Loading from '../../components/Loading';
 import PreviewTrack from '../../components/PreviewTrack';
 import Thumbnail from '../../components/Thumbnail';
 import LikeHandler from '../../components/LikeHandler';
+import DetailHeader from '../../components/DetailHeader';
+
+import cx from 'classnames';
+import globalStyles from '../../bootstrap.module.scss';
+import style from './index.module.scss'
 
 const Track = () => {
   const { trackId } = useParams();
@@ -19,6 +24,7 @@ const Track = () => {
       setTrack((a) => ({...a, ...data}))
     });
   }, [trackId])
+  console.log(globalStyles);
   return (
     <>
       {
@@ -28,54 +34,57 @@ const Track = () => {
           <div className="header">
           <h1 className="d-inline">{ track.name }</h1>
           <h6 className="d-inline">{ track.explicity ? <Badge variant="secondary">EXPLICITY</Badge> : '' }</h6>
-          <LikeHandler className="mt-1 float-right" trackId={track.id} />
+          <div className={cx(style.likeHandler, globalStyles['float-right'], globalStyles['mt-1'], globalStyles['mr-3'])}>
+            <LikeHandler trackId={track.id} />
+          </div>
           </div>
           <hr />
           <div className="content">
             <Row>
               <Col>
                 <h6>Track details</h6>
-                <Row>
-                  <Col>
-                    <span>Popularity</span>
-                  </Col>
-                  <Col>
-                    <span>{track.popularity}</span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <span>Album</span>
-                  </Col>
-                  <Col>
-                    <span>
-                      <Link to={`/album/${track.album.id}`}>
-                        {track.album.name}
-                      </Link>
-                    </span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <span>Artists</span>
-                  </Col>
-                  <Col>
-                      {
-                        track.artists.map((artist) => {
-                          return(
-                            <Row key={artist.id}>
-                              <Col>
-                                <Link to={`/artist/${artist.id}`}>
-                                  {artist.name}
-                                </Link>
-                              </Col>
-                            </Row>
-                          )
-                        })
-                      }
-                  </Col>
-                </Row>
-                <br />
+                <DetailHeader>
+                  <Row>
+                    <Col>
+                      <span>Popularity</span>
+                    </Col>
+                    <Col>
+                      <span>{track.popularity}</span>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <span>Album</span>
+                    </Col>
+                    <Col>
+                      <span>
+                        <Link to={`/album/${track.album.id}`}>
+                          {track.album.name}
+                        </Link>
+                      </span>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <span>Artists</span>
+                    </Col>
+                    <Col>
+                        {
+                          track.artists.map((artist) => {
+                            return(
+                              <Row key={artist.id}>
+                                <Col>
+                                  <Link to={`/artist/${artist.id}`}>
+                                    {artist.name}
+                                  </Link>
+                                </Col>
+                              </Row>
+                            )
+                          })
+                        }
+                    </Col>
+                  </Row>
+                </DetailHeader>
                 <Row>
                   <PreviewTrack previewUrl={track.preview_url} />
                 </Row>

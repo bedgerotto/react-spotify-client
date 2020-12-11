@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import PreviewTrack from '../PreviewTrack';
 import { truncateString } from '../../api_resources/utils'
+import LikeHandler from '../LikeHandler';
 
 const TracksList = (props) => {
   return (
@@ -14,9 +15,10 @@ const TracksList = (props) => {
       <table className="table table-bordered scroll">
         <thead>
           <tr>
-            <th>Track Number</th>
-            <th>Name</th>
+            <th>Nº</th>
             <th></th>
+            <th>Name</th>
+            <th>Preview</th>
           </tr>
         </thead>
         <tbody>
@@ -29,10 +31,13 @@ const TracksList = (props) => {
                   </Link>
                 </td>
                 <td>
-                  {truncateString(track.name, 20)}
+                  <LikeHandler trackId={track.id} />
                 </td>
                 <td>
-                  <PreviewTrack size="200px" previewUrl={track.preview_url} />
+                  <span>{truncateString(track.name, 20)}</span>
+                </td>
+                <td>
+                  <PreviewTrack previewUrl={track.preview_url} />
                 </td>
               </tr>
             )

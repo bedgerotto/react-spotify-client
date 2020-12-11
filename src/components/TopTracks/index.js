@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShare } from '@fortawesome/free-solid-svg-icons'
 
+import { Table } from 'react-bootstrap'
+
 import Loading from '../Loading';
 
 const TopTracks = (props) => {
@@ -15,7 +17,7 @@ const TopTracks = (props) => {
             <div>
               <h4>TOP 5 Tracks</h4>
             </div>
-            <table className="table table-bordered scroll">
+            <Table variant="dark" striped>
               <thead>
                 <tr>
                   <th>Name</th>
@@ -38,7 +40,7 @@ const TopTracks = (props) => {
                   )
                 })}
               </tbody>
-            </table>
+            </Table>
           </div>
         }
     </div>

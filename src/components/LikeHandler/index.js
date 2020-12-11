@@ -8,6 +8,8 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import LikeButton from "../LikeButton";
 import UnlikeButton from "../UnlikeButton";
 
+import './style.css'
+
 const LikeHandler = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [liked, setLiked] = useState(false);
@@ -39,20 +41,22 @@ const LikeHandler = (props) => {
   }
 
   const handleLikeButtonClick = (event) => {
-    setIsLoading(true);
-    putUserLikesTrack(props.trackId).then((data) => {
-      if(!data.error) {
-        setLiked(true);
-        setIsLoading(false);
-      }
-    }).catch((error) => {
-      console.log(error);
-      fetchFollowingStatus();
-    });
+    if (!event) {
+      putUserLikesTrack(props.trackId).then((data) => {
+        if(!data.error) {
+          setLiked(true);
+          setIsLoading(false);
+        }
+      }).catch((error) => {
+        console.log(error);
+        fetchFollowingStatus();
+      });
+    } else {
+      handleUnlikeButtonClick()
+    }
   }
 
   const handleUnlikeButtonClick = (event) => {
-    setIsLoading(true);
     deleteUserLikesTrack(props.trackId).then((data) => {
       if(!data.error) {
         setLiked(false)
@@ -64,24 +68,14 @@ const LikeHandler = (props) => {
     });;
   }
 
-  const style = {
-    'font-size': '32px',
-    'cursor': 'pointer'
-  }
-
   return (
-    <div style={style} className="float-right mt-1 mr-3">
+    <div className="like-handler">
       {
         isLoading ?
         <FontAwesomeIcon color="gray" icon={faCircleNotch} spin />
         :
         <>
-          {
-            liked ?
-            <UnlikeButton className={props.className} handleUnlikeButtonClick={handleUnlikeButtonClick} />
-            :
-            <LikeButton  className={props.className} handleLikeButtonClick={handleLikeButtonClick} />
-          }
+          <LikeButton className={props.className} liked={liked} handleLikeButtonClick={handleLikeButtonClick} />
         </>
       }
     </div>
