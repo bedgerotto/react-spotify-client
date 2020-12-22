@@ -13,7 +13,6 @@ import AlbumsList from '../../components/AlbumsList';
 import TrackArtist from '../../components/TrackArtist';
 import DetailHeader from '../../components/DetailHeader';
 
-import AppStyle from '../../app.module.scss'
 import style from './index.module.scss'
 import Hr from '../../components/structure/hr';
 
